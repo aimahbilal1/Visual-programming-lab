@@ -1,24 +1,28 @@
-namespace task_7_lab_7
+namespace task_9_lab_7
 {
     public partial class Form1 : Form
     {
+        private const int MaxCharacters = 160;
         public Form1()
         {
             InitializeComponent();
-            //timer1 = new timer1();
-            timer1.Interval = 1000; 
-            timer1.Tick += timer1_Tick;
-            timer1.Start();
-            UpdateDateTime();
+            UpdateCharacterCount();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            UpdateDateTime();
+            if (textBox1.Text.Length > MaxCharacters)
+            {
+                textBox1.Text = textBox1.Text.Substring(0, MaxCharacters);
+                textBox1.SelectionStart = textBox1.Text.Length; 
+            }
+
+            UpdateCharacterCount();
         }
-        private void UpdateDateTime()
+        private void UpdateCharacterCount()
         {
-            label1.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy hh:mm:ss tt");
+            int charactersLeft = MaxCharacters - textBox1.Text.Length;
+            label1.Text = $"Characters Left: {charactersLeft}";
         }
     }
 }
