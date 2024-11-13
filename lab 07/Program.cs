@@ -1,4 +1,4 @@
-namespace task_3_lab_7
+namespace task_4_lab_5
 {
     internal static class Program
     {

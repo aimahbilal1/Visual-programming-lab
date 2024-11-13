@@ -1,4 +1,4 @@
-namespace task_3_lab_7
+namespace task_4_lab_5
 {
     public partial class Form1 : Form
     {
@@ -7,26 +7,23 @@ namespace task_3_lab_7
             InitializeComponent();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            dataGridView2.Rows.Clear();
-
-
-            for (int i = 1; i <= 10; i++)
+            if (double.TryParse(textBox2.Text, out double fahrenheit))
             {
-                int squareValue = CalculateSquare(i);
-                dataGridView2.Rows.Add(i, squareValue);
+                double centigrade = (fahrenheit - 32) * 5 / 9;
+
+                textBox1.Text = centigrade.ToString("F2"); 
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid number for Fahrenheit.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private int CalculateSquare(int number)
-        {
-            return number * number;
-        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
